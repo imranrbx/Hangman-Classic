@@ -23,6 +23,9 @@
 img{
   max-width:100%;
 }
+#h-image img{
+  max-width:50%;
+}
 p{
   text-align: center;
   font-size:22px;
@@ -122,8 +125,8 @@ function refresh_form()
     $letters = getLetters($_SESSION['letter']); 
 ?>
 </p>
-<?php if(isset($_SESSION['attempts'])): ?>
-<p style="text-align:center;"><img src="images/<?php echo $_SESSION['attempts'];  ?>.jpg" /></p>
+<?php if(isset($_SESSION['attempts']) AND trim($_SESSION['attempts'])<7): ?>
+<p id="h-image" style="text-align:center;"><img src="images/<?php echo $_SESSION['attempts'];  ?>.jpg" /></p>
 <?php endif; ?>
 <?php if(!isset($status) OR trim($status) > 2): ?>
   <div class="ui-grid-a">
