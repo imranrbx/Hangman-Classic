@@ -65,13 +65,11 @@ p{
 <script type="application/javascript">
 function submit_form($val)
 {
-  console.log('Submit Form Called');
   document.getElementById('userInput').value = $val;
   document.forms["inputForm"].submit();
 }
 function refresh_form()
 {
-  console.log('Refresh Form Called');
 
   document.forms["frm_refresh"].submit();
 }
@@ -100,6 +98,7 @@ function refresh_form()
         $_SESSION['answer'] = $answer;
         $_SESSION['hidden'] = hideCharacters($answer);
         echo '<p style="text-align:center;">Attempts remaining: '.($MAX_ATTEMPTS - $_SESSION['attempts']).'</p>';
+
     }else {
         if (isset ($_POST['userInput']) AND trim($_POST['userInput'])!=''){
             $userInput = $_POST['userInput'];
@@ -123,7 +122,9 @@ function refresh_form()
     $letters = getLetters($_SESSION['letter']); 
 ?>
 </p>
-
+<?php if(isset($_SESSION['attempts'])): ?>
+<p style="text-align:center;"><img src="images/<?php echo $_SESSION['attempts'];  ?>.jpg" /></p>
+<?php endif; ?>
 <?php if(!isset($status) OR trim($status) > 2): ?>
   <div class="ui-grid-a">
 <?php 
